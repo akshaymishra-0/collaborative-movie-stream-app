@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Stream Together</title>
+		<script>
+			// Comprehensive polyfills for Node.js globals that some libraries expect
+			if (typeof global === 'undefined') {
+				window.global = window;
+			}
+			if (typeof process === 'undefined') {
+				window.process = { 
+					env: {},
+					browser: true,
+					version: '',
+					versions: { node: '18.0.0' },
+					nextTick: function(cb) { setTimeout(cb, 0); }
+				};
+			}
+			if (typeof Buffer === 'undefined') {
+				window.Buffer = window.Buffer || {};
+			}
+			// Ensure globalThis is available
+			if (typeof globalThis === 'undefined') {
+				window.globalThis = window;
+			}
+		</script>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type="module" src="/src/main.jsx"></script>
+	</body>
+</html>
